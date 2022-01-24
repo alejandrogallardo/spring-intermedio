@@ -5,6 +5,7 @@ import com.platzi.market.domain.repository.ProductRepository;
 import com.platzi.market.persistence.crud.ProductoCrudRepository;
 import com.platzi.market.persistence.entity.Producto;
 import com.platzi.market.persistence.mapper.ProductMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,7 +14,13 @@ import java.util.Optional;
 //  indicamos que la clase interactua con la base de datos
 @Repository
 public class ProductoRepository implements ProductRepository {
+
+    // Esto puede dar un null pointer exception con la siguiente anotacion se da el control a spring para que
+    // cree las instacion del objeto
+    // para que esta anotacion no de error debe ser un componente de spring
+    @Autowired
     private ProductoCrudRepository productoCrudRepository;
+    @Autowired
     private ProductMapper mapper;
 
     @Override
